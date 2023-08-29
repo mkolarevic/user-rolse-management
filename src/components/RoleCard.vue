@@ -85,24 +85,11 @@ const roleData = computed(() => {
   border: 1px solid #EFEFEF;
 }
 
+/* HEADER */
 .role-card__header {
   padding-inline: 1.5rem;
   padding-top: 1rem;
   min-height: 2.5rem;
-}
-
-.role-card__body {
-  padding-inline: 1.5rem;
-  padding-bottom: 1rem;
-}
-
-.role-card__footer {
-  align-items: center;
-  background-color: #F8F8F8;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 1rem;
 }
 
 .role-status {
@@ -113,6 +100,12 @@ const roleData = computed(() => {
   padding: 0.25rem;
   text-transform: uppercase;
   border-radius: 0.25rem;
+}
+
+/* BODY */
+.role-card__body {
+  padding-inline: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .role-name {
@@ -150,19 +143,23 @@ const roleData = computed(() => {
   width: 32px;
 }
 
-.actions {
+/* FOOTER */
+.role-card__footer {
+  align-items: center;
+  background-color: #F8F8F8;
   display: flex;
-  gap: 12px;
-}
-
-
-.role-description,
-.role-modified {
-  color: var(--color-text-light);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .role-modified {
   font-size: 0.8rem;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
 }
 
 .btn {
@@ -180,5 +177,11 @@ const roleData = computed(() => {
 
 .btn.delete {
   color: var(--color-danger);
+}
+
+/* SHARED */
+.role-description,
+.role-modified {
+  color: var(--color-text-light);
 }
 </style>

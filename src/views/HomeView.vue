@@ -33,9 +33,11 @@ const statusSelect = ref('both')
         </div>
       </div>
 
-      <button class="btn-create">
-        Create new role
-      </button>
+      <RouterLink to="/create">
+        <button class="btn-create" tabindex="-1">
+          Create new role
+        </button>
+      </RouterLink>
     </div>
 
     <div class="roles-wrapper">
@@ -89,7 +91,9 @@ const statusSelect = ref('both')
   border: none;
   color: white;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  align-self: flex-end;
 }
 
 .roles-wrapper {
@@ -97,5 +101,11 @@ const statusSelect = ref('both')
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (max-width: 900px) {
+  .roles-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
