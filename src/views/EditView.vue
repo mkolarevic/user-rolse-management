@@ -3,6 +3,8 @@ import CreateEditForm from '@/components/CreateEditForm.vue';
 import router from '@/router';
 import { useRolesStore } from '@/stores/roles';
 
+/* Data */
+
 /* API */
 function submit(formData: any) {
   let res = useRolesStore().addRole(formData)

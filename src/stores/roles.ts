@@ -34,5 +34,28 @@ export const useRolesStore = defineStore('roles', () => {
     })
   }
 
-  return { roles, filteredRoles, deleteRole }
+  function addRole(role) {
+    let _lastID = 1
+    roles.value.forEach(_r => {
+      if(_r.id > _lastID) _lastID++
+    });
+
+    // TODO: validation
+
+    roles.value.push({
+      id: _lastID + 1,
+      name: role.name,
+      type: role.type,
+      description: role.description,
+      editable: role.editable,
+      active: role.active,
+      users: [],
+      created_on: `${new Date()}`,
+      modified_on: `${new Date()}`
+    })
+
+    return 'success'
+  }
+
+  return { roles, filteredRoles, deleteRole, addRole }
 })
