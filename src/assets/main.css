@@ -1,1 +1,10 @@
-:root {}
+:root {
+  --color-primary: #5FB6C5;
+  --color-danger: #FA3C30;
+  --color-text-light: #A9A8A9;
+  --color-text-dark: #656565;
+}
+
+body {
+  font-family: sans-serif;
+}
