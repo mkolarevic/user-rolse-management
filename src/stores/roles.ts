@@ -28,13 +28,17 @@ export const useRolesStore = defineStore('roles', () => {
     })
   }
 
+  function findRole(id: number) {
+    return roles.value.find((role) => role.id === id)
+  }
+
   function deleteRole(id: number) {
     roles.value = roles.value.filter((role) => {
       return role.id !== id
     })
   }
 
-  function addRole(role) {
+  function addRole(role: any) {
     let _lastID = 1
     roles.value.forEach(_r => {
       if(_r.id > _lastID) _lastID++
@@ -57,5 +61,5 @@ export const useRolesStore = defineStore('roles', () => {
     return 'success'
   }
 
-  return { roles, filteredRoles, deleteRole, addRole }
+  return { roles, filteredRoles, deleteRole, addRole, findRole }
 })

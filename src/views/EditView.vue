@@ -2,8 +2,15 @@
 import CreateEditForm from '@/components/CreateEditForm.vue';
 import router from '@/router';
 import { useRolesStore } from '@/stores/roles';
+import { onBeforeMount, ref } from 'vue';
+
+/* LCH */
+onBeforeMount(() => {
+  data.value = useRolesStore().findRole(parseInt(router.currentRoute.value.params.id as string))
+})
 
 /* Data */
+const data = ref<any>()
 
 /* API */
 function submit(formData: any) {
@@ -19,7 +26,9 @@ function submit(formData: any) {
       Go back
     </RouterLink>
 
-    <CreateEditForm @submit="submit" />
+    <template v-if="data">
+      <CreateEditForm :btn-label="`Edit`" :role="data" @submit="submit" />
+    </template>
   </section>
 </template>
 

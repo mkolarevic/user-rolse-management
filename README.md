@@ -12,8 +12,7 @@ Notes:
 
 ## Not implemented yet (TODO)
 
-- Create role
-- Edit role
+- Edit role (WIP)
 - Confirmation dialog for delete and edit roles
 - Finish with styles
 - Fix code structure

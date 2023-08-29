@@ -5,10 +5,10 @@ import { reactive } from 'vue';
 /* Setup */
 const props = defineProps<{
   role?: any
+  btnLabel?: string
 }>()
 
 /* State */
-
 const form = reactive({
   name: props.role?.name ?? '',
   type: props.role?.type ?? '',
@@ -51,7 +51,7 @@ const emits = defineEmits<{
 
     <div class="btns">
       <button type="submit" class="btn-create">
-        Create
+        {{ btnLabel || `Create` }}
       </button>
 
       <button type="reset" class="btn-reset">
