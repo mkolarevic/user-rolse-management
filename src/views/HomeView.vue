@@ -41,6 +41,12 @@ function getData() {
   data.value = store.filteredRoles(query.search, query.status)
 }
 
+/* API */
+function deleteRole(role: any) {
+  store.deleteRole(role.id)
+  getData()
+}
+
 /* LCH */
 onBeforeMount(() => {
   getData()
@@ -89,9 +95,7 @@ watch(
     </div>
 
     <div class="roles-wrapper">
-      <RoleCard v-for="role in data" :key="role.id" :name="role.name" :roleType="role.type"
-        :description="role.description" :editable="role.editable" :active="role.active" :users="role.users"
-        :created_on="role.created_on" :modified_on="role.modified_on" />
+      <RoleCard v-for="role in data" :key="role.id" :role="role" @delete="deleteRole" />
     </div>
   </main>
 </template>

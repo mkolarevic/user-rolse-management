@@ -9,34 +9,43 @@ type UserType = {
   photo_url: string,
 }
 
-const props = defineProps<{
+type RoleType = {
+  id: number,
   name: string,
-  roleType: string,
+  type: string,
   description: string,
   editable: boolean,
   active: boolean,
   users: UserType[],
   created_on: string | Date
   modified_on: string | Date
+}
+
+const props = defineProps<{
+  role: RoleType
 }>()
 
 const roleData = computed(() => {
   return {
-    ...props,
+    ...props.role,
     _modified_on: Intl.DateTimeFormat('en-US',
       {
         month: '2-digit',
         day: '2-digit',
         year: 'numeric',
-      }).format(new Date(props.modified_on)),
+      }).format(new Date(props.role.modified_on)),
     _users: {
-      displayed: props.users.slice(0, 6),
+      displayed: props.role.users.slice(0, 6),
       rest: {
-        num: props.users.slice(6, -1).length
+        num: props.role.users.slice(6, -1).length
       }
     }
   }
 })
+
+const emits = defineEmits<{
+  (event: 'delete', value: RoleType): void
+}>()
 </script>
 
 <template>
@@ -47,7 +56,7 @@ const roleData = computed(() => {
 
     <div class="role-card__body">
       <h2 class="role-name">{{ roleData.name }}</h2>
-      <h3 class="role-type">{{ roleData.roleType }}</h3>
+      <h3 class="role-type">{{ roleData.type }}</h3>
 
       <p class="role-description">{{ roleData.description }}</p>
 
@@ -68,7 +77,7 @@ const roleData = computed(() => {
         <template v-if="roleData.editable">
           <button class="btn edit">Edit</button>
 
-          <button class="btn delete">Delete</button>
+          <button class="btn delete" @click="emits('delete', props.role)">Delete</button>
         </template>
 
         <template v-else>

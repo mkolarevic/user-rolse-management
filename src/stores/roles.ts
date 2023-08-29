@@ -28,5 +28,11 @@ export const useRolesStore = defineStore('roles', () => {
     })
   }
 
-  return { roles, filteredRoles }
+  function deleteRole(id: number) {
+    roles.value = roles.value.filter((role) => {
+      return role.id !== id
+    })
+  }
+
+  return { roles, filteredRoles, deleteRole }
 })
