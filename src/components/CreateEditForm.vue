@@ -5,7 +5,7 @@ import { reactive } from 'vue';
 /* Setup */
 const props = defineProps<{
   role?: any
-  btnLabel?: string
+  isEdit?: boolean
 }>()
 
 /* State */
@@ -41,7 +41,7 @@ const emits = defineEmits<{
       <textarea rows="3" cols="30" v-model="form.description"></textarea>
     </FormItem>
 
-    <FormItem label="Editable" labelFor="editable">
+    <FormItem v-if="!isEdit" label="Editable" labelFor="editable">
       <input type="checkbox" v-model="form.editable">
     </FormItem>
 
@@ -51,7 +51,7 @@ const emits = defineEmits<{
 
     <div class="btns">
       <button type="submit" class="btn-create">
-        {{ btnLabel || `Create` }}
+        {{ isEdit ? 'Edit' : 'Create' }}
       </button>
 
       <button type="reset" class="btn-reset">

@@ -75,7 +75,9 @@ const emits = defineEmits<{
 
       <div class="actions">
         <template v-if="roleData.editable">
-          <button class="btn edit">Edit</button>
+          <RouterLink :to="`/edit/${roleData.id}`">
+            <button class="btn edit">Edit</button>
+          </RouterLink>
 
           <button class="btn delete" @click="emits('delete', props.role)">Delete</button>
         </template>
@@ -90,8 +92,10 @@ const emits = defineEmits<{
 
 <style scoped>
 .role-card {
-  min-height: 16rem;
   border: 1px solid #EFEFEF;
+  display: grid;
+  grid-auto-rows: auto 1fr auto;
+  min-height: 16rem;
 }
 
 /* HEADER */

@@ -14,7 +14,7 @@ const data = ref<any>()
 
 /* API */
 function submit(formData: any) {
-  let res = useRolesStore().addRole(formData)
+  let res = useRolesStore().editRole(parseInt(router.currentRoute.value.params.id as string), formData)
   if (res === 'success') {
     router.push('/')
   }
@@ -27,7 +27,7 @@ function submit(formData: any) {
     </RouterLink>
 
     <template v-if="data">
-      <CreateEditForm :btn-label="`Edit`" :role="data" @submit="submit" />
+      <CreateEditForm :role="data" @submit="submit" is-edit />
     </template>
   </section>
 </template>

@@ -61,5 +61,21 @@ export const useRolesStore = defineStore('roles', () => {
     return 'success'
   }
 
-  return { roles, filteredRoles, deleteRole, addRole, findRole }
+  function editRole(id: number, fields: any) {
+    const _i = roles.value.findIndex((role) => role.id == id)
+
+    if(!roles.value[_i].editable) {
+      return
+    }
+
+    roles.value[_i].active = fields.active ?? roles.value[_i]
+    roles.value[_i].description = fields.description ?? roles.value[_i].description
+    roles.value[_i].name = fields.name ?? roles.value[_i].name
+    roles.value[_i].type = fields.type ?? roles.value[_i].type
+    roles.value[_i].modified_on = `${new Date()}`
+
+    return 'success'
+  }
+
+  return { roles, filteredRoles, deleteRole, addRole, editRole, findRole }
 })
